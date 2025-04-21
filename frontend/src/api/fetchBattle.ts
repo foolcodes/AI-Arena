@@ -3,7 +3,7 @@ import axios from "axios";
 export const fetchBattle = async (id: string | null) => {
   try {
     const response = await axios.post(
-      `${process.env.CLIENT_URL}/api/battle/${id}`
+      `${import.meta.env.VITE_CLIENT_URL}/api/battle/${id}`
     );
 
     if (!response || !response.data || !response.data.success) {

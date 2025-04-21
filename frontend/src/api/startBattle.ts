@@ -16,7 +16,7 @@ export const startBattle = async (
     }
 
     const response = await axios.post(
-      `${process.env.CLIENT_URL}/api/battle-chat`,
+      `${import.meta.env.VITE_CLIENT_URL}/api/battle-chat`,
       {
         model1,
         model2,

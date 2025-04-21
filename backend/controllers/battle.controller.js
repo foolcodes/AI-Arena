@@ -111,6 +111,7 @@ export const fetchAllBattles = async (req, res) => {
       message: "Battles fetched successfully",
       battles,
     });
+    console.log(battles);
   } catch (error) {
     res
       .status(400)

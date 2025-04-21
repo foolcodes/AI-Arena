@@ -2,9 +2,12 @@ import axios from "axios";
 
 export const likeBattle = async (battleId: string) => {
   try {
-    const response = await axios.post(`${process.env.CLIENT_URL}/api/like`, {
-      battleId,
-    });
+    const response = await axios.post(
+      `${import.meta.env.VITE_CLIENT_URL}/api/like`,
+      {
+        battleId,
+      }
+    );
     return response.data;
   } catch (error: any) {
     if (error.response) {

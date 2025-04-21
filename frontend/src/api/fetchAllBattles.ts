@@ -3,8 +3,9 @@ import axios from "axios";
 export const fetchAllBattles = async () => {
   try {
     const response = await axios.get(
-      `${process.env.CLIENT_URL}/api/all-battles`
+      `${import.meta.env.VITE_CLIENT_URL}/api/all-battles`
     );
+    console.log(response.data);
     return response.data;
   } catch (error: any) {
     if (error.response) {

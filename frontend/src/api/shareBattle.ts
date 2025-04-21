@@ -9,14 +9,17 @@ export const shareBattle = async (
   messages: Object
 ) => {
   try {
-    const response = await axios.post(`${process.env.CLIENT_URL}/api/battle`, {
-      topic,
-      model1,
-      model2,
-      judge,
-      rounds,
-      messages,
-    });
+    const response = await axios.post(
+      `${import.meta.env.VITE_CLIENT_URL}/api/battle`,
+      {
+        topic,
+        model1,
+        model2,
+        judge,
+        rounds,
+        messages,
+      }
+    );
     if (!response || !response.data || !response.data.success) {
       throw new Error("Invalid response from server");
     }
