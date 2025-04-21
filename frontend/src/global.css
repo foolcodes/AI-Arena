@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .overflow-clip-margin-content {
+    overflow-clip-margin: content-box;
+  }
+}
+
+body {
+  font-family: "Inter" "Sans serif";
+}
+
+.animate-float-1 {
+  animation: float1 15s ease-in-out infinite;
+}
+.animate-float-2 {
+  animation: float2 18s ease-in-out infinite;
+}
+.animate-float-3 {
+  animation: float3 20s ease-in-out infinite;
+}
+.animate-float-4 {
+  animation: float4 22s ease-in-out infinite;
+}
+
+@keyframes float1 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(5%, 10%) rotate(5deg);
+  }
+  50% {
+    transform: translate(-5%, 15%) rotate(-5deg);
+  }
+  75% {
+    transform: translate(8%, 5%) rotate(3deg);
+  }
+}
+@keyframes float2 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  20% {
+    transform: translate(-7%, 5%) rotate(-3deg);
+  }
+  40% {
+    transform: translate(5%, 12%) rotate(5deg);
+  }
+  60% {
+    transform: translate(-8%, 8%) rotate(-8deg);
+  }
+  80% {
+    transform: translate(3%, 3%) rotate(3deg);
+  }
+}
+@keyframes float3 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(6%, 15%) rotate(8deg);
+  }
+  66% {
+    transform: translate(-10%, 8%) rotate(-4deg);
+  }
+}
+@keyframes float4 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  30% {
+    transform: translate(-5%, 10%) rotate(-10deg);
+  }
+  60% {
+    transform: translate(12%, 5%) rotate(5deg);
+  }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.btn-glass {
+  @apply px-4 py-2 rounded-lg text-sm flex items-center
+    bg-white/5 hover:bg-white/10 
+    border border-white/10 hover:border-white/20
+    text-gray-300 hover:text-white
+    transition-all duration-200
+    backdrop-blur-sm;
+}
+
+.btn-primary {
+  @apply px-4 py-2 rounded-lg text-sm flex items-center
+    bg-gradient-to-r from-red-500 to-red-600
+    hover:from-red-600 hover:to-red-700
+    text-white font-medium
+    transform hover:scale-105
+    transition-all duration-200
+    shadow-lg hover:shadow-red-500/25;
+}
+
+.btn-reaction {
+  @apply flex items-center mr-4 px-2 py-1 rounded-md
+    text-gray-400 hover:text-white
+    hover:bg-white/5
+    transition-all duration-200;
+}
+
+.shadow-glow-blue {
+  box-shadow: 0 0 20px theme("colors.blue.500/20");
+}
+
+.shadow-glow-green {
+  box-shadow: 0 0 20px theme("colors.green.500/20");
+}
+
+.chat-container {
+  background: linear-gradient(
+    to bottom right,
+    rgba(17, 24, 39, 0.8),
+    rgba(17, 24, 39, 0.95)
+  );
+  backdrop-filter: blur(10px);
+}
+
+.bg-gradient-subtle {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.01)
+  );
+}
+
+.radial-gradient {
+  background: radial-gradient(
+      circle at 50% 0%,
+      rgba(var(--radial-gradient-background), 0.05) 0%,
+      transparent 30%
+    )
+    linear-gradient(to bottom, rgb(243, 56, 96), rgb(255, 0, 0));
+}
+
+.linear-mask {
+  mask-image: linear-gradient(
+    -75deg,
+    white calc(var(--x) + 20%),
+    transparent calc(var(--x) + 30%),
+    white calc(var(--x) + 100%)
+  );
+  -webkit-mask-image: linear-gradient(
+    -75deg,
+    white calc(var(--x) + 20%),
+    transparent calc(var(--x) + 30%),
+    white calc(var(--x) + 100%)
+  );
+}
+
+.linear-overlay {
+  background-image: linear-gradient(
+    -75deg,
+    rgba(100, 149, 237, 0.1) calc(var(--x) + 20%),
+    rgb(238, 10, 10) calc(var(--x) + 25%),
+    rgba(100, 149, 237, 0.1) calc(var(--x) + 100%)
+  );
+  mask: linear-gradient(black, black) content-box, linear-gradient(black, black);
+  -webkit-mask: linear-gradient(black, black) content-box,
+    linear-gradient(black, black);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+}
