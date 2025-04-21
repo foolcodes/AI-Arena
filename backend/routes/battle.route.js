@@ -16,5 +16,8 @@ router.post("/like", likeBattle);
 router.post("/dislike", dislikeBattle);
 router.post("/battle/:battleId", findBattle);
 router.get("/all-battles", fetchAllBattles);
+router.get("/", (req, res) => {
+  res.send("Working");
+});
 
 export default router;
