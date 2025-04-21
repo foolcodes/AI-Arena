@@ -1,4 +1,4 @@
-const getAllBattles = async (): Promise<{ battles: Battle[] }> => {
+const getAllBattles = async () => {
   // Simulate API delay
   await new Promise((resolve) => setTimeout(resolve, 1000));
 

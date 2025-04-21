@@ -38,11 +38,11 @@ const BattleCard = ({ index, battle }: BattleCardProps) => {
   const handleReaction = async (reaction: "like" | "dislike") => {
     try {
       if (reaction === "like") {
-        const response = await likeBattle(battle._id);
+        await likeBattle(battle._id);
         setLiked((prev) => !prev);
         setDisliked(false);
       } else {
-        const response = await dislikeBattle(battle._id);
+        await dislikeBattle(battle._id);
         setDisliked((prev) => !prev);
         setLiked(false);
       }
