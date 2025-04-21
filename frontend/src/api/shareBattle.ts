@@ -9,7 +9,7 @@ export const shareBattle = async (
   messages: Object
 ) => {
   try {
-    const response = await axios.post("http://localhost:5000/api/battle", {
+    const response = await axios.post(`${process.env.CLIENT_URL}/api/battle`, {
       topic,
       model1,
       model2,

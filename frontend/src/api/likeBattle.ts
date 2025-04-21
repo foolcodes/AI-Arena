@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const likeBattle = async (battleId: string) => {
   try {
-    const response = await axios.post("http://localhost:5000/api/like", {
+    const response = await axios.post(`${process.env.CLIENT_URL}/api/like`, {
       battleId,
     });
     return response.data;

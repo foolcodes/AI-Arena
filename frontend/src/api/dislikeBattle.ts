@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const dislikeBattle = async (battleId: string) => {
   try {
-    const response = await axios.post("http://localhost:5000/api/dislike", {
+    const response = await axios.post(`${process.env.CLIENT_URL}/api/dislike`, {
       battleId,
     });
     return response.data;

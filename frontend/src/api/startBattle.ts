@@ -16,7 +16,7 @@ export const startBattle = async (
     }
 
     const response = await axios.post(
-      "http://localhost:5000/api/battle-chat",
+      `${process.env.CLIENT_URL}/api/battle-chat`,
       {
         model1,
         model2,

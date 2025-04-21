@@ -2,7 +2,9 @@ import axios from "axios";
 
 export const fetchBattle = async (id: string | null) => {
   try {
-    const response = await axios.post(`http://localhost:5000/api/battle/${id}`);
+    const response = await axios.post(
+      `${process.env.CLIENT_URL}/api/battle/${id}`
+    );
 
     if (!response || !response.data || !response.data.success) {
       throw new Error("Invalid response from server");

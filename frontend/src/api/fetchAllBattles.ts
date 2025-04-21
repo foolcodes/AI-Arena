@@ -2,7 +2,9 @@ import axios from "axios";
 
 export const fetchAllBattles = async () => {
   try {
-    const response = await axios.get("http://localhost:5000/api/all-battles");
+    const response = await axios.get(
+      `${process.env.CLIENT_URL}/api/all-battles`
+    );
     return response.data;
   } catch (error: any) {
     if (error.response) {
