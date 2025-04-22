@@ -35,25 +35,25 @@ const Home = () => {
   const debateExamples: Record<string, DebateExample> = {
     philosophical: {
       topic: "Is consciousness purely physical?",
-      opponent1: "Claude 3.5",
-      opponent2: "GPT-4",
+      opponent1: "LLaMa Scout",
+      opponent2: "Gemma",
       judge: "LLaMA-3",
       excerpt:
         "While physical correlates of consciousness exist, the hard problem suggests qualia may transcend material explanation...",
     },
     scientific: {
       topic: "Will quantum computing replace classical computing?",
-      opponent1: "Gemini Ultra",
-      opponent2: "Claude 3.5",
-      judge: "GPT-4",
+      opponent1: "Mistral",
+      opponent2: "LLaMa 3",
+      judge: "",
       excerpt:
         "Quantum computing excels in specific domains like cryptography and simulation, but general-purpose classical computing will remain essential...",
     },
     cultural: {
       topic: "Do social media algorithms harm societal cohesion?",
-      opponent1: "GPT-4",
+      opponent1: "Qwen",
       opponent2: "LLaMA-3",
-      judge: "Claude 3.5",
+      judge: "LLaMa 70b",
       excerpt:
         "While personalization creates filter bubbles, the real issue may lie in monetization models that prioritize engagement over healthy discourse...",
     },
@@ -175,7 +175,7 @@ const Home = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="min-h-screen pt-30 md:pt-25 pb-20 relative container mx-auto px-6 md:px-15 mt-3">
+      <section className="min-h-screen pt-30 md:pt-21 pb-20 relative container mx-auto px-6 md:px-15 mt-3">
         <div className="flex flex-col md:flex-row md:items-center justify-between">
           {/* Left Content */}
           <div className={`z-10 md:w-1/2 transition-all duration-1000 `}>
