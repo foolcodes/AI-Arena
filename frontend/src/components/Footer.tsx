@@ -20,6 +20,18 @@ const Footer = () => {
             © 2025 AI Debate Platform. All rights reserved.
           </p>
         </div>
+
+        <p className="mt-3 text-center">
+          Made with ❤️ by{" "}
+          <a
+            href="https://x.com/afoolcodes"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-red-400 transition-colors"
+          >
+            Vedansh
+          </a>
+        </p>
       </div>
     </footer>
   );

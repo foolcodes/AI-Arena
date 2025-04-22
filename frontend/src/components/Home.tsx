@@ -175,7 +175,7 @@ const Home = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="min-h-screen pt-30 md:pt-44 pb-20 relative container mx-auto px-6 md:px-15 mt-3">
+      <section className="min-h-screen pt-30 md:pt-36 pb-20 relative container mx-auto px-6 md:px-15 mt-3">
         <div className="flex flex-col md:flex-row md:items-center justify-between">
           {/* Left Content */}
           <div className={`z-10 md:w-1/2 transition-all duration-1000 `}>

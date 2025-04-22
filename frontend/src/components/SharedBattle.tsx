@@ -57,6 +57,10 @@ const SharedBattle = () => {
     };
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]); // Scroll to top when the route changes
+
   return (
     <div className="min-h-screen bg-gray-900 text-white relative overflow-hidden p-4 md:p-12">
       {/* Animated background gradients */}
