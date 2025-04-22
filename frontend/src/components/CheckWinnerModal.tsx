@@ -163,7 +163,7 @@ const CheckWinnerModal = ({
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.7, type: "spring" }}
-                className="bg-white/80 dark:bg-gray-800/70 rounded-xl p-4 mb-6 backdrop-blur-sm border border-red-500/10 max-h-[300px] overflow-x-auto"
+                className="bg-white/80 dark:bg-gray-800/70 rounded-xl p-4 mb-6 backdrop-blur-sm border border-red-500/10 max-h-[200px] overflow-x-auto"
               >
                 <div className="flex items-center mb-4">
                   <div
