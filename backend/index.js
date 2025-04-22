@@ -11,7 +11,7 @@ connectDB();
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-app.use("/", battleRoutes);
+app.use("/api", battleRoutes);
 app.get("/test", (req, res) => {
   res.json({ message: "API is working!" });
 });
