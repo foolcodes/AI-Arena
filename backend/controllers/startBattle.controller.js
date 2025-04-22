@@ -1,6 +1,5 @@
 import axios from "axios";
 import dotenv from "dotenv";
-// Personality behaviors for different models
 dotenv.config();
 
 const groqApiKey = process.env.GROQ_API_KEY;
@@ -18,7 +17,6 @@ const behaviors = {
   mistral: `You're a savage debater who weaponizes facts like memes. You roast, you joke, you drop truth bombs — and your humor makes your factual takedowns even more devastating.`,
 };
 
-// Function to chat with different models via Groq with optimized token usage
 const chatWithGroqModel = async (
   modelName,
   behavior,
@@ -35,7 +33,7 @@ const chatWithGroqModel = async (
           { role: "user", content: message },
         ],
         temperature: 0.75,
-        max_tokens: maxTokens, // Limited token output for efficiency
+        max_tokens: maxTokens,
       },
       {
         headers: {
@@ -56,7 +54,7 @@ const chatWithGroqModel = async (
   }
 };
 
-// Model configurations with token optimizations
+// Model configurations
 const modelConfigs = {
   llama8b: {
     name: "🚀 Llama 3 (8B)",
@@ -102,9 +100,7 @@ const modelConfigs = {
   },
 };
 
-// Judge function with optimized token usage
 const judgeDebate = async (topic, debateTranscript, model1, model2) => {
-  // Create a more concise debate summary to save tokens
   const condensedTranscript = debateTranscript
     .map(
       (turn) =>
@@ -129,18 +125,17 @@ SCORE: [Score for ${model1}] - [Score for ${model2}] (scale 1-10)
 REASONING: [Brief analysis of why this model won]
 `;
 
-  // Using LLaMA 4 Scout as judge - good reasoning with decent quota
   return await chatWithGroqModel(
     "meta-llama/llama-4-scout-17b-16e-instruct",
     "You are an objective, fair debate judge who evaluates arguments on their merits.",
     judgePrompt,
-    400 // Higher token limit for judge to provide complete reasoning
+    400
   );
 };
 
-// Run a debate between two specified models with rate limit considerations
+// Running a debate between two specified models
 const runTwoModelDebate = async (topic, model1Id, model2Id, turns = 4) => {
-  // Reduced default to 4 turns
+  //  default to 4 turns
   if (!modelConfigs[model1Id] || !modelConfigs[model2Id]) {
     throw new Error(
       `Invalid model selection: ${model1Id} or ${model2Id} not found`
@@ -161,20 +156,13 @@ const runTwoModelDebate = async (topic, model1Id, model2Id, turns = 4) => {
       const currentModel = isModel1Turn ? model1 : model2;
       const opponentModel = isModel1Turn ? model2 : model1;
 
-      console.log(
-        `Getting response from ${currentModel.name} for turn ${
-          currentTurn + 1
-        }...`
-      );
-
-      // Create a much better prompt
       const prompt = `
     You are ${currentModel.name}, an AI debater.
     Your opponent is ${opponentModel.name}.
     
     Topic: "${topic}"
     
-    Your task: Respond to what ${opponentModel.name} said previously.
+    Your task: Respond to what ${opponentModel.name} said previously if its just a hii or hello that means you are starting the debate.
     Make your arguments powerful, funny, witty (according to your personality), and DESTROY weak points if any.
     
     Previous message from ${opponentModel.name}:
@@ -196,15 +184,9 @@ const runTwoModelDebate = async (topic, model1Id, model2Id, turns = 4) => {
         turn: currentTurn + 1,
       });
 
-      console.log(
-        `Completed turn ${currentTurn + 1} with ${currentModel.name}`
-      );
-
       lastMessage = response;
       currentTurn++;
     }
-
-    console.log("Debate completed. Calling judge...");
 
     // Have the judge evaluate the debate
     const judgement = await judgeDebate(
@@ -238,9 +220,6 @@ export const startBattle = async (req, res) => {
       });
     }
 
-    console.log(
-      `Starting debate between ${model1} and ${model2} on topic: ${topic}`
-    );
     const debateResults = await runTwoModelDebate(
       topic,
       model1,

@@ -5,7 +5,6 @@ export const fetchAllBattles = async () => {
     const response = await axios.get(
       `${import.meta.env.VITE_CLIENT_URL}/api/all-battles`
     );
-    console.log(response.data);
     return response.data;
   } catch (error: any) {
     if (error.response) {

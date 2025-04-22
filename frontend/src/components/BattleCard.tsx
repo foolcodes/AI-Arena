@@ -50,8 +50,6 @@ const BattleCard = ({ index, battle }: BattleCardProps) => {
       console.error("Failed to react to battle:", error);
     }
   };
-
-  // Format date
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return new Intl.DateTimeFormat("en-US", {

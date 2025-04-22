@@ -16,7 +16,7 @@ export const DebateMessage = ({ message }: DebateMessageProps) => {
     <div className="group flex flex-col animate-fade-in">
       <div className="flex items-center mb-2">
         <div
-          className={`w-10 h-10 rounded-full bg-gradient-to-br from-${message.color}-400 to-${message.color}-600 flex items-center justify-center mr-3 shadow-glow-${message.color}`}
+          className={`w-10 h-10 rounded-full bg-gradient-to-br from-${message.color}-400 to-${message.color}-600 flex items-center justify-center mr-1 md:mr-3 shadow-glow-${message.color}`}
         >
           <Brain size={20} className="text-white" />
         </div>
@@ -27,7 +27,7 @@ export const DebateMessage = ({ message }: DebateMessageProps) => {
         </div>
       </div>
 
-      <div className="ml-13">
+      <div className="ml-2 md:ml-13">
         <div className="relative">
           <div className="absolute -left-2 top-4 w-4 h-4 transform rotate-45 bg-gray-800"></div>
           <div className="bg-gray-800 rounded-lg p-5 shadow-xl backdrop-blur-sm">

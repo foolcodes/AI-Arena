@@ -1,10 +1,10 @@
-import { Brain, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import { useState, useEffect } from "react";
+import logo from "../assets/logo.png";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-    // Scroll event listener
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
@@ -18,14 +18,14 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300${
         scrolled ? "bg-white shadow-md py-2" : "bg-transparent py-6"
       }`}
     >
-      <div className="container mx-auto px-6 flex items-center justify-between">
+      <div className="container mx-auto px-6 md:px-16 flex items-center justify-between">
         <div className="flex items-center">
-          <div className="h-10 w-10 rounded-lg bg-red-600 flex items-center justify-center mr-3">
-            <Brain className="text-white" size={24} />
+          <div className="h-10 w-10 rounded-lg flex items-center justify-center mr-3">
+            <img src={logo} />
           </div>
           <span className="font-bold text-xl text-gray-900">AI Arena</span>
         </div>

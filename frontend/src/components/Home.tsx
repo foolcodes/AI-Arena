@@ -14,6 +14,7 @@ import {
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -147,8 +148,6 @@ const Home = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-gray-100 to-gray-200 overflow-x-hidden">
-      {/* Floating particles/circles for background animation */}
-      {/* Floating particles/circles for background animation */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         {useMemo(() => {
           return [...Array(8)].map((_, i) => (
@@ -171,13 +170,12 @@ const Home = () => {
             />
           ));
         }, [])}{" "}
-        {/* Empty dependency array means this only runs once */}
       </div>
       {/* Navigation */}
       <Navbar />
 
       {/* Hero Section */}
-      <section className="min-h-screen pt-40 md:pt-44 pb-20 relative container mx-auto px-6 mt-3">
+      <section className="min-h-screen pt-30 md:pt-44 pb-20 relative container mx-auto px-6 md:px-15 mt-3">
         <div className="flex flex-col md:flex-row md:items-center justify-between">
           {/* Left Content */}
           <div className={`z-10 md:w-1/2 transition-all duration-1000 `}>
@@ -188,13 +186,19 @@ const Home = () => {
               </span>{" "}
               Minds
               <span className="relative">
-                <span className="relative z-10"> Debate</span>
-                <span className="absolute bottom-1 left-0 w-full h-3 bg-red-700/50 rounded-lg -z-0"></span>
+                <span
+                  className="relative z-10 ml-6"
+                  style={{ fontFamily: "Heading" }}
+                >
+                  Debate
+                </span>
+
+                <span className="absolute -bottom-1 left-3 w-full h-3 bg-red-700/50 rounded-lg -z-0"></span>
               </span>{" "}
               Any Topic
             </h1>
 
-            <p className="text-gray-600  text-lg mb-8 leading-relaxed">
+            <p className="text-gray-600 text-lg mb-8 leading-relaxed">
               Experience the future of intellectual discourse with our
               cutting-edge platform where artificial intelligence engages in
               thoughtful debates. Select two AI opponents, choose a judge, set
@@ -271,7 +275,7 @@ const Home = () => {
                 </button>
               </div>
 
-              <h3 className="text-xl text-white font-bold mb-3">
+              <h3 className="text-xl text-white mb-3">
                 "{debateExamples[activeTab].topic}"
               </h3>
 
@@ -334,6 +338,28 @@ const Home = () => {
           <div className="font-bold text-sm">LLaMA</div>
         </div>
       </section>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
+        className="hidden md:flex absolute bottom-10 left-1/2 transform -translate-x-1/2 flex-col items-center text-gray-400"
+      >
+        <span className="text-sm mb-2 font-light tracking-wide"></span>
+        <div className="w-6 h-10 mb-4 border border-gray-500 rounded-full flex justify-center p-1">
+          <motion.div
+            className="w-1.5 h-1.5 bg-red-600 rounded-full"
+            animate={{
+              y: [0, 12, 0],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              repeatType: "loop",
+              ease: "easeInOut",
+            }}
+          />
+        </div>
+      </motion.div>
 
       {/* Features Section */}
       <section
@@ -351,7 +377,7 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:px-13">
             {features.map((feature, index) => (
               <div
                 key={index}
@@ -373,7 +399,7 @@ const Home = () => {
         id="how-it-works"
         className="py-20 bg-gradient-to-br from-gray-800 to-gray-900"
       >
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-6 md:px-16">
           <div className="flex flex-col md:flex-row md:items-center">
             <div className="md:w-1/2 mb-12 md:mb-0">
               <div className="inline-flex items-center space-x-2 mb-4">

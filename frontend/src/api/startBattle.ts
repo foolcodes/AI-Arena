@@ -30,7 +30,6 @@ export const startBattle = async (
       }
     );
 
-    // Checking if response is valid
     if (!response || !response.data || !response.data.success) {
       throw new Error("Invalid response from server");
     }

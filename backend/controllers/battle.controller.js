@@ -4,7 +4,6 @@ export const createBattle = async (req, res) => {
   const { topic, model1, model2, judge, rounds, messages } = req.body;
   try {
     if (!topic || !model1 || !model2 || !judge || !rounds || !messages) {
-      console.log(topic, model1, model2, judge, rounds, messages);
       res
         .status(400)
         .json({ success: false, message: "All the data is required" });
@@ -111,7 +110,6 @@ export const fetchAllBattles = async (req, res) => {
       message: "Battles fetched successfully",
       battles,
     });
-    console.log(battles);
   } catch (error) {
     res
       .status(400)

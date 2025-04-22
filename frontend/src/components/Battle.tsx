@@ -60,7 +60,7 @@ const Battle = () => {
     };
   }, []);
 
-  // Form state
+  //Debatform state
   const [newDebate, setNewDebate] = useState({
     topic: "",
     model1: "llama8b",
@@ -86,7 +86,7 @@ const Battle = () => {
     model: string;
   }
 
-  // Sample debate messages
+  // default debate messages
   const sampleMessages: Message[] = [
     {
       turn: 1,
@@ -127,7 +127,6 @@ const Battle = () => {
   ];
 
   useEffect(() => {
-    // Simulate loading initial messages
     const timer = setTimeout(() => {
       setMessages(sampleMessages);
     }, 1000);
@@ -135,7 +134,6 @@ const Battle = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Handle form input changes
   const handleInputChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -143,7 +141,6 @@ const Battle = () => {
   ) => {
     const { name, value } = e.target;
     setNewDebate((prev) => ({ ...prev, [name]: value }));
-    console.log(newDebate);
   };
 
   const handleShareBattle = async () => {
@@ -160,28 +157,27 @@ const Battle = () => {
       const id = response.battle._id;
       setBattleId(id);
 
-      // Create the shareable URL
+      // Creating the shareable URL
       const shareableUrl = `${window.location.origin}/battle/${id}`;
 
-      // Copy to clipboard
+      // Copying to clipboard
       await navigator.clipboard.writeText(shareableUrl);
 
-      // Show success toast
+      // Showing success toast
       setCopySuccess(true);
       setShowShareToast(true);
 
-      // Hide toast after 3 seconds
+      // Hiding toast after 3 seconds
       setTimeout(() => {
         setShowShareToast(false);
         setCopySuccess(false);
       }, 3000);
     } catch (error) {
-      console.log("Error sharing!");
-      // Show error toast
+      // Showing error toast
       setCopySuccess(false);
       setShowShareToast(true);
 
-      // Hide toast after 3 seconds
+      // Hiding toast after 3 seconds
       setTimeout(() => {
         setShowShareToast(false);
       }, 3000);
@@ -210,10 +206,8 @@ const Battle = () => {
         newDebate.rounds
       );
 
-      console.log("Debate started successfully:", response);
       setMessages(response.debate);
       setDebate(newDebate);
-      console.log(response);
 
       const judgement = response.judgement;
 
@@ -226,10 +220,8 @@ const Battle = () => {
       const winnerScore = scoreMatch ? parseInt(scoreMatch[2]) : null;
       const reasoning = reasoningMatch ? reasoningMatch[1].trim() : null;
 
-      // Extract highlights from reasoning
       let highlights = [];
       if (reasoning) {
-        // Extract key points from the reasoning text
         const sentences = reasoning.split(". ");
         highlights = sentences
           .filter(
@@ -244,7 +236,7 @@ const Battle = () => {
           .slice(0, 3)
           .map((s: string) => s.trim() + (s.endsWith(".") ? "" : "."));
 
-        // If we couldn't extract enough highlights, add some generic ones
+        // If we couldn't extract enough highlights, adding some generic ones
         if (highlights.length < 2) {
           highlights = [
             `${winner} demonstrated superior debating skills.`,
@@ -271,11 +263,11 @@ const Battle = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white relative overflow-hidden p-12">
+    <div className="min-h-screen bg-gray-900 text-white relative overflow-hidden py-5 md:py-12 md:px-12 px-4">
       {/* Animated background gradients */}
       <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-r from-purple-500/20 to-blue-500/20 blur-[100px] transform -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-r from-red-500/20 to-orange-500/20 blur-[100px] transform translate-y-1/2" />
+        <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-r from-red-400/20 to-red-600/20 blur-[100px] transform -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-r from-orange-400/20 to-red-500/20 blur-[100px] transform translate-y-1/2" />
       </div>
       <DebateHeader
         scrolled={scrolled}

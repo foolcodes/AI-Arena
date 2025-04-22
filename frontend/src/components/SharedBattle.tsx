@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchBattle } from "../api/fetchBattle";
-import { Award, Brain, ChevronRight, RefreshCw } from "lucide-react";
+import { Award, Brain, RefreshCw } from "lucide-react";
 import { DebateMessage } from "./DebateMessage";
 import { SharedBattleHeader } from "./SharedBattleHeader";
 
@@ -31,7 +31,6 @@ const SharedBattle = () => {
       const extractedId = battleIdFromUrl.replace("battle:", "");
 
       const response = await fetchBattle(extractedId);
-      console.log(response);
       setMessages(response.battleData.messages);
       const debateData = {
         topic: response.battleData.topic,
@@ -59,11 +58,11 @@ const SharedBattle = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white relative overflow-hidden p-12">
+    <div className="min-h-screen bg-gray-900 text-white relative overflow-hidden p-4 md:p-12">
       {/* Animated background gradients */}
       <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-r from-purple-500/20 to-blue-500/20 blur-[100px] transform -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-r from-red-500/20 to-orange-500/20 blur-[100px] transform translate-y-1/2" />
+        <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-r from-red-400/20 to-red-600/20 blur-[100px] transform -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-r from-orange-400/20 to-red-500/20 blur-[100px] transform translate-y-1/2" />
       </div>
       <SharedBattleHeader scrolled={scrolled} />
       {/* Main content */}
@@ -76,8 +75,8 @@ const SharedBattle = () => {
           <div className="flex flex-wrap items-center justify-between">
             <div className="flex items-center space-x-4 mb-4 md:mb-0">
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center">
-                  <Brain className="text-white" size={20} />
+                <div className="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center">
+                  <Brain className="tex-white" size={20} />
                 </div>
                 <span className="text-white ml-2">{debate.model1}</span>
               </div>
@@ -121,20 +120,6 @@ const SharedBattle = () => {
                 ))}
               </div>
             )}
-          </div>
-
-          {/* Controls */}
-          <div className="bg-gradient-subtle p-4 border-t border-white/10">
-            <div className="flex items-center justify-center">
-              <button
-                className={`flex items-center justify-center px-6 py-3 rounded-lg font-medium ${"bg-red-600 hover:bg-red-700 text-white"}`}
-              >
-                <>
-                  <ChevronRight size={18} className="mr-2" />
-                  Check winner
-                </>
-              </button>
-            </div>
           </div>
         </div>
       </div>

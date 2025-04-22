@@ -172,3 +172,30 @@ body {
   mask-composite: exclude;
   -webkit-mask-composite: xor;
 }
+
+@font-face {
+  font-family: "Heading";
+  src: url("/fonts/LT_karaoke/LTKaraoke-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Regular";
+  src: url("/fonts/LT_karaoke/LTKaraoke-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "SemiBold";
+  src: url("/fonts/LT_karaoke/LTKaraoke-SemiBold.ttf") format("truetype");
+}
+
+body {
+  font-family: "Regular", sans-serif;
+}
+
+h1 {
+  font-family: "Heading";
+}
+
+h3 {
+  font-family: "SemiBold", "sans-serif";
+}

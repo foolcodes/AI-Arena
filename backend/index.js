@@ -15,6 +15,4 @@ app.use("/api", battleRoutes);
 app.get("/test", (req, res) => {
   res.json({ message: "API is working!" });
 });
-
-// no app.listen here – Vercel will invoke this as a Serverless function
 export default app;

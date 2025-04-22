@@ -39,7 +39,6 @@ const CheckWinnerModal = ({
 }: CheckWinnerModalProps) => {
   const [animationComplete, setAnimationComplete] = useState(false);
 
-  // Reset animation state when modal opens
   useEffect(() => {
     if (isOpen) {
       setAnimationComplete(false);
@@ -48,54 +47,52 @@ const CheckWinnerModal = ({
 
   if (!isOpen) return null;
 
-  // Determine the winner color based on the model name
   const getWinnerColor = (winner: string) => {
-    if (winner === debate.model1) return "bg-blue-500";
-    if (winner === debate.model2) return "bg-green-500";
-    return "bg-purple-500"; // Default fallback
+    if (winner === debate.model1) return "bg-red-500";
+    if (winner === debate.model2) return "bg-orange-500";
+    return "bg-pink-500";
   };
 
-  // Determine the loser
   const getLoser = () => {
     return winnerData.winner === debate.model1 ? debate.model2 : debate.model1;
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50 ">
-      {/* Backdrop with blur */}
+    <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
+      {/* Backdrop */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm "
+        className="absolute inset-0 bg-black/50 backdrop-blur-md"
         onClick={onClose}
       />
 
-      {/* Modal content */}
+      {/* Modal */}
       <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
+        initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.8, opacity: 0 }}
+        exit={{ scale: 0.9, opacity: 0 }}
         transition={{ type: "spring", damping: 20, stiffness: 300 }}
-        className="relative bg-gray-900 rounded-2xl w-full max-w-2xl mx-4 overflow-hidden border border-white/20 shadow-2xl"
+        className="relative bg-white dark:bg-gray-900 rounded-2xl w-full max-w-2xl mx-4 overflow-hidden shadow-2xl border border-red-500/20"
       >
-        {/* Background decorative elements */}
+        {/* Decorative Blurs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-20 -left-20 w-40 h-40 bg-blue-500/20 rounded-full blur-3xl" />
-          <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-yellow-500/20 rounded-full blur-3xl" />
+          <div className="absolute -top-20 -left-20 w-40 h-40 bg-red-400/20 rounded-full blur-3xl" />
+          <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-orange-400/20 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-pink-400/20 rounded-full blur-3xl" />
         </div>
 
-        {/* Close button */}
+        {/* Close */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-white p-2 rounded-full hover:bg-white/10 transition-colors z-10"
+          className="absolute top-4 right-4 text-gray-400 hover:text-red-400 p-2 rounded-full hover:bg-red-500/10 transition-colors z-10"
         >
           <X size={20} />
         </button>
 
         {/* Header */}
-        <div className="relative pt-8 pb-6 px-6 text-center border-b border-white/10">
+        <div className="relative pt-8 pb-6 px-6 text-center border-b border-red-500/20">
           <AnimatePresence>
             {!animationComplete ? (
               <motion.div
@@ -109,12 +106,12 @@ const CheckWinnerModal = ({
                   transition={{ duration: 2, repeat: 1 }}
                   onAnimationComplete={() => setAnimationComplete(true)}
                 >
-                  <Award size={40} className="text-yellow-500 mb-3" />
+                  <Award size={40} className="text-red-400 mb-3" />
                 </motion.div>
-                <h2 className="text-2xl font-bold text-white">
+                <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white">
                   Judging debate...
                 </h2>
-                <p className="text-gray-400 mt-2">
+                <p className="text-gray-500 dark:text-gray-400 mt-2">
                   Our judge {debate.judge} is determining the winner
                 </p>
               </motion.div>
@@ -132,18 +129,20 @@ const CheckWinnerModal = ({
                   transition={{ delay: 0.2, type: "spring" }}
                   className="relative mb-4"
                 >
-                  <Trophy size={48} className="text-yellow-500" />
+                  <Trophy size={48} className="text-red-400" />
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.8 }}
                     className="absolute -top-2 -right-2"
                   >
-                    <Sparkles size={16} className="text-yellow-300" />
+                    <Sparkles size={16} className="text-pink-300" />
                   </motion.div>
                 </motion.div>
-                <h2 className="text-2xl font-bold text-white">Debate Winner</h2>
-                <p className="text-gray-400 mt-1">
+                <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white">
+                  Debate Winner
+                </h2>
+                <p className="text-gray-500 dark:text-gray-400 mt-1">
                   As determined by {debate.judge}
                 </p>
               </motion.div>
@@ -151,7 +150,7 @@ const CheckWinnerModal = ({
           </AnimatePresence>
         </div>
 
-        {/* Winner content */}
+        {/* Winner */}
         <AnimatePresence>
           {animationComplete && winnerData && (
             <motion.div
@@ -160,12 +159,11 @@ const CheckWinnerModal = ({
               transition={{ delay: 0.5 }}
               className="p-6"
             >
-              {/* Winner card */}
               <motion.div
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.7, type: "spring" }}
-                className="bg-gray-800/70 rounded-xl p-4 mb-6 backdrop-blur-sm border border-white/10 max-h-[300px] overflow-x-auto"
+                className="bg-white/80 dark:bg-gray-800/70 rounded-xl p-4 mb-6 backdrop-blur-sm border border-red-500/10 max-h-[300px] overflow-x-auto"
               >
                 <div className="flex items-center mb-4">
                   <div
@@ -177,21 +175,21 @@ const CheckWinnerModal = ({
                   </div>
                   <div className="ml-4">
                     <div className="flex items-center">
-                      <h3 className="text-xl font-bold text-white">
+                      <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">
                         {winnerData.winner}
                       </h3>
                       <motion.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ delay: 1, type: "spring" }}
-                        className="ml-2 bg-yellow-500/20 px-2 py-0.5 rounded text-yellow-300 text-sm font-medium flex items-center"
+                        className="ml-2 bg-red-500/20 px-2 py-0.5 rounded text-red-400 text-xs md:text-sm font-medium flex items-center"
                       >
                         <Trophy size={12} className="mr-1" />
                         Winner
                       </motion.div>
                     </div>
                     <div className="flex items-center mt-1">
-                      <span className="text-yellow-400 font-bold">
+                      <span className="text-red-500 font-bold">
                         {winnerData.score}/10
                       </span>
                       <div className="ml-2 flex">
@@ -206,8 +204,8 @@ const CheckWinnerModal = ({
                               size={12}
                               className={`mr-0.5 ${
                                 i < Math.round((winnerData.score ?? 0) / 2)
-                                  ? "text-yellow-500"
-                                  : "text-gray-600"
+                                  ? "text-red-400"
+                                  : "text-gray-300"
                               }`}
                               fill={
                                 i < Math.round((winnerData.score ?? 0) / 2)
@@ -222,10 +220,13 @@ const CheckWinnerModal = ({
                   </div>
                 </div>
 
-                <div className="pl-16">
-                  <p className="text-gray-300 mb-3">{winnerData.reasoning}</p>
+                {/* Reasoning */}
+                <div className="pl-4 md:pl-16">
+                  <p className="text-gray-600 dark:text-gray-300 mb-3">
+                    {winnerData.reasoning}
+                  </p>
 
-                  <h4 className="text-sm font-medium text-white mb-2">
+                  <h4 className="text-sm font-medium text-gray-900 dark:text-white mb-2">
                     Key highlights:
                   </h4>
                   <ul className="space-y-2">
@@ -235,11 +236,11 @@ const CheckWinnerModal = ({
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 1.3 + index * 0.2 }}
-                        className="flex items-center text-gray-300"
+                        className="flex items-center text-gray-600 dark:text-gray-300"
                       >
                         <ArrowRight
                           size={12}
-                          className="text-green-500 mr-2 flex-shrink-0"
+                          className="text-red-400 mr-2 flex-shrink-0"
                         />
                         <span>{highlight}</span>
                       </motion.li>
@@ -248,22 +249,20 @@ const CheckWinnerModal = ({
                 </div>
               </motion.div>
 
-              {/* Loser mention */}
+              {/* Loser */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.8 }}
-                className="text-center text-gray-400 text-sm"
+                className="text-center text-gray-500 dark:text-gray-400 text-xs md:text-sm"
               >
                 <p>
-                  {getLoser()} put up a good fight but couldn't outperform the
-                  winner.
-                  <br />
-                  Better luck next time!
+                  {getLoser()} put up a strong fight but couldn't outperform the
+                  winner. Better luck next time!
                 </p>
               </motion.div>
 
-              {/* Actions */}
+              {/* Close Button */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -272,7 +271,7 @@ const CheckWinnerModal = ({
               >
                 <button
                   onClick={onClose}
-                  className="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg text-white font-medium hover:from-blue-700 hover:to-purple-700 transition-colors shadow-lg shadow-blue-900/20"
+                  className="px-6 py-2 bg-gradient-to-r from-red-500 to-red-700 rounded-lg text-white font-medium hover:from-red-600 hover:to-red-600 transition-colors shadow-lg shadow-red-500/30"
                 >
                   Close
                 </button>

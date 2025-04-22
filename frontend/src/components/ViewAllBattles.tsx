@@ -31,7 +31,6 @@ const ViewAllBattles = () => {
       try {
         const response = await fetchAllBattles();
         setBattles(response.battles);
-        console.log(response);
       } catch (error) {
         console.error("Failed to fetch battles:", error);
       } finally {
@@ -73,7 +72,6 @@ const ViewAllBattles = () => {
     }
   });
 
-  // Get unique models for filter
   const allModels = Array.from(
     new Set(
       battles.flatMap((battle) => [battle.model1, battle.model2, battle.judge])
@@ -84,8 +82,8 @@ const ViewAllBattles = () => {
     <div className="min-h-screen bg-gray-900 text-white relative overflow-hidden p-4 md:p-12">
       {/* Animated background gradients */}
       <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-r from-purple-500/20 to-blue-500/20 blur-[100px] transform -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-r from-red-500/20 to-orange-500/20 blur-[100px] transform translate-y-1/2" />
+        <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-r from-red-400/20 to-red-600/20 blur-[100px] transform -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-r from-orange-400/20 to-red-500/20 blur-[100px] transform translate-y-1/2" />
       </div>
 
       {/* Header */}
@@ -96,7 +94,7 @@ const ViewAllBattles = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          AI Debate Battles
+          Battles
         </motion.h1>
         <motion.div
           className="bg-white/5 h-1 w-24 mx-auto rounded-full"
@@ -123,13 +121,13 @@ const ViewAllBattles = () => {
             />
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center justify-center md:justify-end gap-3">
             <button
               onClick={() => setShowFilters(!showFilters)}
               className="flex items-center gap-2 px-4 py-3 bg-gray-800/50 hover:bg-gray-700 border border-white/10 rounded-lg transition-colors"
             >
               <Filter size={18} />
-              <span className="hidden md:inline">Filters</span>
+              <span className="inline">Filters</span>
             </button>
 
             <div className="relative">
