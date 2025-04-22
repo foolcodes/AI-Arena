@@ -18,7 +18,7 @@ export const createBattle = async (req, res) => {
       messages,
     });
     await battle.save();
-    res.status(201).json({
+    res.status(200).json({
       success: true,
       message: "Battle created successfully",
       battle: battle,
@@ -38,7 +38,7 @@ export const findBattle = async (req, res) => {
         message: "No battle with the battle id provided exists!",
       });
     }
-    res.status(201).json({
+    res.status(200).json({
       success: true,
       message: "Battle found",
       battleData: isBattleExists,
@@ -106,7 +106,7 @@ export const dislikeBattle = async (req, res) => {
 export const fetchAllBattles = async (req, res) => {
   try {
     const battles = await Battle.find();
-    res.status(201).json({
+    res.status(200).json({
       success: true,
       message: "Battles fetched successfully",
       battles,
